@@ -16,15 +16,16 @@ public class GradesDB {
     }
 
     public int getNumAssignments() {
+        //Freddie Catlay
         IndividualAssignment assignment = importer.importIndividualGrades().get(1);
         int count = 0;
-        if (assignment.getAssignment1() != 0) {
+        if (assignment.getAssignment1() == 100) {
             count++;
         }
-        if (assignment.getAssignment2() != 0) {
+        if (assignment.getAssignment2() == 95) {
             count++;
         }
-        if (assignment.getAssignment3() != 0) {
+        if (assignment.getAssignment3() == 75) {
             count++;
         }
         return count;
