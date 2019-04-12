@@ -140,9 +140,7 @@ public class ExcelIO {
                 field.set(a, objectConverter.returnObject(type));
             }
             //System.out.println();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return a;
