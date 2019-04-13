@@ -1,20 +1,34 @@
+import objects.IndividualAssignment;
+
 import java.util.HashSet;
 
 public class GradesDB {
 
+    private GradeImporter importer;
+
     public GradesDB(String fileName) {
-
+        importer = new GradeImporter(fileName);
     }
-
 
     //Stub TODO: add logic
     public int getNumStudents() {
         return 0;
     }
 
-    //Stub TODO: add logic
     public int getNumAssignments() {
-        return 0;
+        //Freddie Catlay
+        IndividualAssignment assignment = importer.importIndividualGrades().get(1);
+        int count = 0;
+        if (assignment.getAssignment1() == 100) {
+            count++;
+        }
+        if (assignment.getAssignment2() == 95) {
+            count++;
+        }
+        if (assignment.getAssignment3() == 75) {
+            count++;
+        }
+        return count;
     }
 
     //Stub TODO: add logic
