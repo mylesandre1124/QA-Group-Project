@@ -1,5 +1,7 @@
 import objects.IndividualAssignment;
+import objects.StudentInfo;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class GradesDB {
@@ -12,7 +14,16 @@ public class GradesDB {
 
     //Stub TODO: add logic
     public int getNumStudents() {
-        return 0;
+        HashSet<Student> students = new HashSet<>();
+        ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
+        for (StudentInfo student : studentInfo) {
+            if (!student.getName().equals("NAME")) {
+                Student s = new Student(student.getName(), String.valueOf(student.getId()), student.getEmail(), student.getcSkill(), student.getCppSkill(), student.getJavaSkill(), student.getCsJobEx(), importer);
+                students.add(s);
+            }
+        }
+
+        return students.size();
     }
 
     public int getNumAssignments() {
@@ -38,17 +49,42 @@ public class GradesDB {
 
     //Stub TODO: add logic
     public HashSet<Student> getStudents() {
-        return new HashSet<>();
+        HashSet<Student> students = new HashSet<>();
+        ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
+        for (StudentInfo student : studentInfo) {
+            if (!student.getName().equals("NAME")) {
+                Student s = new Student(student.getName(), String.valueOf(student.getId()), student.getEmail(), student.getcSkill(), student.getCppSkill(), student.getJavaSkill(), student.getCsJobEx(), importer);
+                students.add(s);
+            }
+        }
+
+        return students;
     }
 
     //Stub TODO: add logic
     public Student getStudentByName(String name) {
-        return new Student();
+        ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
+        Student student = null;
+        for (StudentInfo s : studentInfo) {
+            if (s.getName().equalsIgnoreCase(name)) {
+                student = new Student(s.getName(), String.valueOf(s.getId()), s.getEmail(), s.getcSkill(), s.getCppSkill(), s.getJavaSkill(), s.getCsJobEx(), importer);
+                break;
+            }
+        }
+        return student;
     }
 
     //Stub TODO: add logic
     public Student getStudentByID(String id) {
-        return new Student();
+        ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
+        Student student = null;
+        for (StudentInfo s : studentInfo) {
+            if (String.valueOf(s.getId()).equals(id)) {
+                student = new Student(s.getName(), String.valueOf(s.getId()), s.getEmail(), s.getcSkill(), s.getCppSkill(), s.getJavaSkill(), s.getCsJobEx(), importer);
+                break;
+            }
+        }
+        return student;
     }
 
 }
