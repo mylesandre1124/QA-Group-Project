@@ -1,4 +1,5 @@
 import objects.IndividualAssignment;
+import objects.IndividualContributions;
 import objects.StudentInfo;
 
 import java.util.ArrayList;
@@ -44,7 +45,20 @@ public class GradesDB {
 
     //Stub TODO: add logic
     public int getNumProjects() {
-        return 0;
+        ArrayList<IndividualContributions> contributions = importer.importIndividualContributions();
+        //Caileigh Raybould
+        IndividualContributions contribution = contributions.get(6);
+        int count = 0;
+        if (contribution.getProject1() == 50) {
+            count++;
+        }
+        if (contribution.getProject2() == 90) {
+            count++;
+        }
+        if (contribution.getProject3() == 89) {
+            count++;
+        }
+        return count;
     }
 
     //Stub TODO: add logic

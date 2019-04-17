@@ -1,4 +1,5 @@
 import objects.IndividualAssignment;
+import objects.IndividualContributions;
 import objects.StudentAttendance;
 import objects.StudentInfo;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -28,6 +29,21 @@ public class GradeImporter {
             e.printStackTrace();
         }
         return assignments;
+    }
+
+    public ArrayList<IndividualContributions> importIndividualContributions() {
+        ArrayList<IndividualContributions> contributions = new ArrayList<>();
+        try {
+            excelIO.setExcelSheet(4);
+            ArrayList<ArrayList> lists = excelIO.singleColumnInput();
+            ArrayList<String> fields = new ArrayList<>(Arrays.asList("name", "project1", "project2", "project3"));
+            for (ArrayList row: lists) {
+                contributions.add((IndividualContributions)excelIO.convertRowToObject(new IndividualContributions(), fields, row));
+            }
+        } catch (IOException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        return contributions;
     }
 
     public ArrayList<StudentInfo> importStudentInfo() {

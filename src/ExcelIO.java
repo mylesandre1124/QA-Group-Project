@@ -95,13 +95,17 @@ public class ExcelIO {
                     }
                 }
                 for (int i = 0; i < cellNums1.size(); i++) {
-                    rowList.add(cellNums1.get(i), "");
+                    if (rowList.size() < cellNums1.get(i)) {
+                        rowList.add("");
+                    } else {
+                        rowList.add(cellNums1.get(i), "");
+                    }
                 }
             }
             if(!checkList(rowList)) {
                 excelList.add(rowList);
             }
-            }
+        }
         return excelList;
     }
 
@@ -135,7 +139,9 @@ public class ExcelIO {
                 Class type = field.getType();
                 ObjectConverter objectConverter = new ObjectConverter();
                 //System.out.print(fields.get(i) + ": " + data.get(i) + " ");
-                objectConverter.dataConverter(data.get(i));
+                if (i < data.size()) {
+                    objectConverter.dataConverter(data.get(i));
+                }
                 field.setAccessible(true);
                 field.set(a, objectConverter.returnObject(type));
             }
