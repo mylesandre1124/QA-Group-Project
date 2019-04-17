@@ -1,4 +1,5 @@
 import objects.IndividualAssignment;
+import objects.IndividualContributions;
 import objects.StudentAttendance;
 import objects.StudentInfo;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -15,19 +16,36 @@ public class GradeImporter {
         this.excelIO = new ExcelIO(fileName);
     }
 
-    public ArrayList<IndividualAssignment> importIndividualGrades() {
-        ArrayList<IndividualAssignment> assignments = new ArrayList<>();
+    public void close() {
+        try {
+            excelIO.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList importAssignments() {
+        ArrayList assignments = new ArrayList<>();
         try {
             excelIO.setExcelSheet(3);
             ArrayList<ArrayList> lists = excelIO.singleColumnInput();
-            ArrayList<String> fields = new ArrayList<>(Arrays.asList("name", "assignment1", "assignment2", "assignment3"));
-            for (ArrayList row: lists) {
-                assignments.add((IndividualAssignment)excelIO.convertRowToObject(new IndividualAssignment(), fields, row));
-            }
+            assignments = lists.get(0);
         } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
         return assignments;
+    }
+
+    public ArrayList importProjects() {
+        ArrayList projects = new ArrayList<>();
+        try {
+            excelIO.setExcelSheet(4);
+            ArrayList<ArrayList> lists = excelIO.singleColumnInput();
+            projects = lists.get(0);
+        } catch (IOException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        return projects;
     }
 
     public ArrayList<StudentInfo> importStudentInfo() {

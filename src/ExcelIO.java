@@ -22,9 +22,7 @@ public class ExcelIO {
         setExcelFile(new File(excelFile));
         try {
             setExcelSheet(sheetIndex);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
     }
@@ -43,6 +41,10 @@ public class ExcelIO {
     public void setExcelSheet(int sheetIndex) throws IOException, InvalidFormatException {
         Workbook workbook = new XSSFWorkbook(this.excelFile);
         this.excelSheet = workbook.getSheetAt(sheetIndex);
+    }
+
+    public void close() throws IOException {
+        excelSheet.getWorkbook().close();
     }
 
     /**
@@ -95,13 +97,17 @@ public class ExcelIO {
                     }
                 }
                 for (int i = 0; i < cellNums1.size(); i++) {
-                    rowList.add(cellNums1.get(i), "");
+                    if (rowList.size() < cellNums1.get(i)) {
+                        rowList.add("");
+                    } else {
+                        rowList.add(cellNums1.get(i), "");
+                    }
                 }
             }
             if(!checkList(rowList)) {
                 excelList.add(rowList);
             }
-            }
+        }
         return excelList;
     }
 
@@ -135,7 +141,9 @@ public class ExcelIO {
                 Class type = field.getType();
                 ObjectConverter objectConverter = new ObjectConverter();
                 //System.out.print(fields.get(i) + ": " + data.get(i) + " ");
-                objectConverter.dataConverter(data.get(i));
+                if (i < data.size()) {
+                    objectConverter.dataConverter(data.get(i));
+                }
                 field.setAccessible(true);
                 field.set(a, objectConverter.returnObject(type));
             }

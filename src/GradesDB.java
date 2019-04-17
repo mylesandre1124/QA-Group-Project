@@ -1,4 +1,5 @@
 import objects.IndividualAssignment;
+import objects.IndividualContributions;
 import objects.StudentInfo;
 
 import java.util.ArrayList;
@@ -12,7 +13,11 @@ public class GradesDB {
         importer = new GradeImporter(fileName);
     }
 
-    //Stub TODO: add logic
+    public void close() {
+        importer.close();
+    }
+
+
     public int getNumStudents() {
         HashSet<Student> students = new HashSet<>();
         ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
@@ -28,26 +33,27 @@ public class GradesDB {
 
     public int getNumAssignments() {
         //Freddie Catlay
-        IndividualAssignment assignment = importer.importIndividualGrades().get(1);
+        ArrayList assignments = importer.importAssignments();
         int count = 0;
-        if (assignment.getAssignment1() == 100) {
-            count++;
-        }
-        if (assignment.getAssignment2() == 95) {
-            count++;
-        }
-        if (assignment.getAssignment3() == 75) {
-            count++;
+        for (Object assignment : assignments) {
+            if (assignment instanceof String && ((String) assignment).toLowerCase().contains("assignment")) {
+                count++;
+            }
         }
         return count;
     }
 
-    //Stub TODO: add logic
     public int getNumProjects() {
-        return 0;
+        ArrayList projects = importer.importProjects();
+        int count = 0;
+        for (Object project : projects) {
+            if (project instanceof String && ((String) project).toLowerCase().contains("project")) {
+                count++;
+            }
+        }
+        return count;
     }
 
-    //Stub TODO: add logic
     public HashSet<Student> getStudents() {
         HashSet<Student> students = new HashSet<>();
         ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
@@ -61,7 +67,6 @@ public class GradesDB {
         return students;
     }
 
-    //Stub TODO: add logic
     public Student getStudentByName(String name) {
         ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
         Student student = null;
@@ -74,7 +79,6 @@ public class GradesDB {
         return student;
     }
 
-    //Stub TODO: add logic
     public Student getStudentByID(String id) {
         ArrayList<StudentInfo> studentInfo = importer.importStudentInfo();
         Student student = null;
