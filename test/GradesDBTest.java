@@ -19,6 +19,7 @@ public class GradesDBTest {
 
     @After
     public void tearDown() throws Exception {
+        db.close();
         db = null;
     }
 

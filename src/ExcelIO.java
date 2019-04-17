@@ -22,9 +22,7 @@ public class ExcelIO {
         setExcelFile(new File(excelFile));
         try {
             setExcelSheet(sheetIndex);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
     }
@@ -43,6 +41,10 @@ public class ExcelIO {
     public void setExcelSheet(int sheetIndex) throws IOException, InvalidFormatException {
         Workbook workbook = new XSSFWorkbook(this.excelFile);
         this.excelSheet = workbook.getSheetAt(sheetIndex);
+    }
+
+    public void close() throws IOException {
+        excelSheet.getWorkbook().close();
     }
 
     /**
