@@ -1,25 +1,29 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.util.HashSet;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class GradesDBTest {
 
-	GradesDB db = null;
-    static final String GRADES_DB = "DB/GradesDatabase.xlsx";
+    GradesDB db = null;
+    static final String GRADES_DB_GOLDEN = "DB" + File.separator
+            + "GradesDatabase-goldenversion.xlsx";
+    static final String GRADES_DB = "DB" + File.separator
+            + "GradesDatabase.xlsx";
 
     @Before
     public void setUp() throws Exception {
-        db = new GradesDB(GRADES_DB);
+        db = new GradesDB();
+        db.loadSpreadsheet(GRADES_DB_GOLDEN);
     }
 
     @After
     public void tearDown() throws Exception {
-        db.close();
         db = null;
     }
 
@@ -53,15 +57,7 @@ public class GradesDBTest {
     public void testGetStudents2() {
         HashSet<Student> students = null;
         students = db.getStudents();
-        boolean found = false;
-        for (Student s : students) {
-            if (s.getName().compareTo("Cynthia Faast") == 0
-                    && s.getId().compareTo("1234514") == 0) {
-                found = true;
-                break;
-            }
-        }
-        assertTrue(found);
+        assertTrue(students.contains(new Student("Cynthia Faast", "1234514", db)));
     }
 
     @Test
@@ -83,5 +79,7 @@ public class GradesDBTest {
         Student student = db.getStudentByID("1234504");
         assertTrue(student.getName().compareTo("Shevon Wise") == 0);
     }
-}
 
+    // Don't change above this point
+
+}
