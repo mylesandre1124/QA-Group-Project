@@ -3,6 +3,8 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class ExcelIO {
 
     private File excelFile;
     private Sheet excelSheet;
+    private Workbook workbook;
+    private FileInputStream fis;
 
 
     public ExcelIO(String excelFile) {
@@ -39,7 +43,8 @@ public class ExcelIO {
     }
 
     public void setExcelSheet(int sheetIndex) throws IOException, InvalidFormatException {
-        Workbook workbook = new XSSFWorkbook(this.excelFile);
+        fis = new FileInputStream(excelFile);
+        this.workbook = new XSSFWorkbook(fis);
         this.excelSheet = workbook.getSheetAt(sheetIndex);
     }
 
@@ -164,5 +169,34 @@ public class ExcelIO {
             }
         }
         return index;
+    }
+
+    public void appendColumn(ArrayList<Object> data) {
+        int rowSize = excelSheet.getPhysicalNumberOfRows();
+        for (int i = 0; i < rowSize; i++) {
+            Row row = excelSheet.getRow(i);
+            if (i < data.size()) {
+                Cell cell = row.createCell(row.getLastCellNum());
+                if (data.get(i) instanceof Number) {
+                    cell.setCellValue( ((Number) data.get(i)).doubleValue());
+                } else if (data.get(i) instanceof String) {
+                    CellStyle style = workbook.createCellStyle();
+                    Font font = workbook.createFont();
+                    font.setBold(true);
+                    style.setFont(font);
+                    cell.setCellStyle(style);
+                    cell.setCellValue((String) data.get(i));
+
+                }
+            }
+        }
+        try {
+            fis.close();
+            FileOutputStream outputStream = new FileOutputStream(excelFile);
+            workbook.write(outputStream);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

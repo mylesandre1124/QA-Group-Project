@@ -82,4 +82,19 @@ public class GradesDBTest {
 
     // Don't change above this point
 
+    @Test
+    public void testCreateNewAssignment() {
+        db.createNewAssignment();
+        int numAssignments = db.getNumAssignments();
+        assertEquals(4, numAssignments);
+    }
+
+    @Test
+    public void testRunCreateNewContribution() {
+        db.createNewContribution();
+        int numProjects;
+        numProjects = db.getNumProjects();
+        assertEquals(4, numProjects);
+    }
+
 }

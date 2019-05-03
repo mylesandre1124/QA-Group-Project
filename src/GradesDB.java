@@ -1,16 +1,24 @@
-import objects.IndividualAssignment;
-import objects.IndividualContributions;
 import objects.StudentInfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class GradesDB {
 
     private GradeImporter importer;
+    private GradeExporter exporter;
 
-    public GradesDB(String fileName) {
+    public GradesDB() {
+    }
+
+    public void loadSpreadsheet(String fileName) {
         importer = new GradeImporter(fileName);
+        exporter = new GradeExporter(fileName);
+    }
+
+    public GradeImporter getImporter() {
+        return importer;
     }
 
     public void close() {
@@ -90,5 +98,21 @@ public class GradesDB {
         }
         return student;
     }
+
+    public void createNewAssignment() {
+        ArrayList<Object> data = new ArrayList<Object>(Arrays.asList("ASSIGNMENT 4", 95, 96, 65, 17, 87, 65, 90, 35, 67, 95, 96, 65, 17, 87));
+        exporter.setExcelSheet(3);
+        exporter.appendData(data);
+        exporter.close();
+    }
+
+    public void createNewContribution() {
+        ArrayList<Object> data = new ArrayList<Object>(Arrays.asList("PROJECT 4", 95, 96, 65, 17, 87, 65, 90, 35, 67));
+        exporter.setExcelSheet(4);
+        exporter.appendData(data);
+        exporter.close();
+    }
+
+
 
 }
