@@ -91,4 +91,78 @@ public class GradesDB {
         return student;
     }
 
+    public Double getAverageAssignmentGrade(String assignment) {
+        Double sum = 0.0;
+        Double avg = 0.0;
+        ArrayList<IndividualAssignment> assignmentInfo = importer.importAssignmentInfo();
+        for (IndividualAssignment i : assignmentInfo) {
+            if (assignment.equalsIgnoreCase("Assignment 1")) {
+                sum += i.getAssignment1();
+            } else if (assignment.equalsIgnoreCase("Assignment 2")) {
+                sum += i.getAssignment2();
+            } else if (assignment.equalsIgnoreCase("Assignment 3")) {
+                sum += i.getAssignment3();
+            }
+        }
+
+        int size = assignmentInfo.size()-1;
+        avg = sum / size;
+
+        return avg;
+    }
+
+    public Double getAverageAssignmentGrade() {
+        Double sum = 0.0;
+        Double avg = 0.0;
+        ArrayList<IndividualAssignment> assignmentInfo = importer.importAssignmentInfo();
+        for (IndividualAssignment i : assignmentInfo) {
+            sum += i.getAssignment1();
+            sum += i.getAssignment2();
+            sum += i.getAssignment3();
+        }
+
+        int size = assignmentInfo.size()-1;
+        size *= 3;
+        avg = sum / size;
+
+        return avg;
+    }
+
+    public Double getAverageProjectGrade(String project) {
+        Double sum = 0.0;
+        Double avg = 0.0;
+        ArrayList<IndividualContributions> projectInfo = importer.importProjectInfo();
+        for (IndividualContributions i : projectInfo) {
+            if (project.equalsIgnoreCase("Project 1")) {
+                sum += i.getProject1();
+            } else if (project.equalsIgnoreCase("Project 2")) {
+                sum += i.getProject2();
+            } else if (project.equalsIgnoreCase("Project 3")) {
+                sum += i.getProject3();
+            }
+        }
+
+        int size = projectInfo.size()-5;
+        avg = sum / size;
+
+        return avg;
+    }
+
+    public Double getAverageProjectGrade() {
+        Double sum = 0.0;
+        Double avg = 0.0;
+        ArrayList<IndividualContributions> projectInfo = importer.importProjectInfo();
+        for (IndividualContributions i : projectInfo) {
+            sum += i.getProject1();
+            sum += i.getProject2();
+            sum += i.getProject3();
+        }
+
+        int size = projectInfo.size()-5;
+        size *= 3;
+        avg = sum / size;
+
+        return avg;
+    }
+
 }
