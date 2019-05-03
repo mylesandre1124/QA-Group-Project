@@ -1,6 +1,6 @@
 import objects.StudentAttendance;
-import objects.StudentInfo;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 //Stub
@@ -31,6 +31,12 @@ public class Student {
         this.importer = importer;
     }
 
+    public Student(String name, String id, GradesDB gradesDB) {
+        this.name = name;
+        this.id = id;
+        this.importer = gradesDB.getImporter();
+    }
+
     //Stub TODO: add logic
     public int getAttendance() {
         int attendance = 0;
@@ -58,5 +64,19 @@ public class Student {
     public void setJavaSkill(int javaSkill) {this.javaSkill = javaSkill;}
     public char getCsJobEx() {return csJobEx;}
     public void setCsJobEx(char csJobEx) {this.csJobEx = csJobEx;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return name.equals(student.name) &&
+                id.equals(student.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, id);
+    }
 
 }
