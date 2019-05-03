@@ -83,5 +83,29 @@ public class GradesDBTest {
         Student student = db.getStudentByID("1234504");
         assertTrue(student.getName().compareTo("Shevon Wise") == 0);
     }
+
+    @Test
+    public void testGetAssignmentAverageByAssignment() {
+        Double avg = 99.28571428571429;
+        assertEquals(avg, db.getAverageAssignmentGrade("Assignment 1"));
+    }
+
+    @Test
+    public void testGetAssignmentAverage() {
+        Double avg = 92.07142857142857;
+        assertEquals(avg, db.getAverageAssignmentGrade());
+    }
+
+    @Test
+    public void testGetProjectAverageByProject() {
+        Double avg = 88.35714285714286;
+        assertEquals(avg, db.getAverageProjectGrade("Project 1"));
+    }
+
+    @Test
+    public void testGetProjectAverage() {
+        Double avg = 68.30952380952381;
+        assertEquals(avg, db.getAverageProjectGrade());
+    }
 }
 

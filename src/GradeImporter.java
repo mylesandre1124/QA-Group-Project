@@ -63,6 +63,36 @@ public class GradeImporter {
         return students;
     }
 
+    public ArrayList<IndividualAssignment> importAssignmentInfo() {
+        ArrayList<IndividualAssignment> assignments = new ArrayList<>();
+        try {
+            excelIO.setExcelSheet(3);
+            ArrayList<ArrayList> lists = excelIO.singleColumnInput();
+            ArrayList<String> fields = new ArrayList<>(Arrays.asList("name", "assignment1", "assignment2", "assignment3"));
+            for (ArrayList row: lists) {
+                assignments.add((IndividualAssignment) excelIO.convertRowToObject(new IndividualAssignment(), fields, row));
+            }
+        } catch (IOException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        return assignments;
+    }
+
+    public ArrayList<IndividualContributions> importProjectInfo() {
+        ArrayList<IndividualContributions> projects = new ArrayList<>();
+        try {
+            excelIO.setExcelSheet(4);
+            ArrayList<ArrayList> lists = excelIO.singleColumnInput();
+            ArrayList<String> fields = new ArrayList<>(Arrays.asList("name", "project1", "project2", "project3"));
+            for (ArrayList row: lists) {
+                projects.add((IndividualContributions) excelIO.convertRowToObject(new IndividualContributions(), fields, row));
+            }
+        } catch (IOException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        return projects;
+    }
+
     public ArrayList<StudentAttendance> importStudentAttendance() {
         ArrayList<StudentAttendance> students = new ArrayList<>();
         try {
