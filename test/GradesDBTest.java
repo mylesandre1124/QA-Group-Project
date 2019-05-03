@@ -102,7 +102,7 @@ public class GradesDBTest {
 
     @Test
     public void testGetProjectAverage() {
-        Double avg = 85.45238095238095;
+        Double avg = 76.88095238095238;
         assertEquals(avg, db.getAverageProjectGrade());
     }
 

@@ -183,9 +183,9 @@ public class GradesDB {
     }
 
     public void createNewContribution() {
-        ArrayList<Object> data = new ArrayList<Object>(Arrays.asList("PROJECT 4", 95, 96, 65, 17, 87, 65, 90, 35, 67));
+        ArrayList<Object> data = new ArrayList<Object>(Arrays.asList("PROJECT 4", 95, 96, 65, 17, 87, 65, 90, 35, 67, 87, 65, 90, 35, 67));
         exporter.setExcelSheet(4);
-        exporter.appendData(data);
+        exporter.createColumn(data, 4);
         exporter.close();
     }
 

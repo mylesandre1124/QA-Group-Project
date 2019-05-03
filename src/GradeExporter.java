@@ -23,6 +23,10 @@ public class GradeExporter {
         excelIO.appendColumn(data);
     }
 
+    public void createColumn(ArrayList<Object> data, int columnIndex) {
+        excelIO.createColumn(data, columnIndex);
+    }
+
     public void close() {
         try {
             excelIO.close();

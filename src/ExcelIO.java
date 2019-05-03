@@ -177,19 +177,25 @@ public class ExcelIO {
             Row row = excelSheet.getRow(i);
             if (i < data.size()) {
                 Cell cell = row.createCell(row.getLastCellNum());
-                if (data.get(i) instanceof Number) {
-                    cell.setCellValue( ((Number) data.get(i)).doubleValue());
-                } else if (data.get(i) instanceof String) {
-                    CellStyle style = workbook.createCellStyle();
-                    Font font = workbook.createFont();
-                    font.setBold(true);
-                    style.setFont(font);
-                    cell.setCellStyle(style);
-                    cell.setCellValue((String) data.get(i));
-
-                }
+                writeCellData(data, i, cell);
             }
         }
+        write();
+    }
+
+    public void createColumn(ArrayList<Object> data, int columnIndex) {
+        int rowSize = excelSheet.getPhysicalNumberOfRows();
+        for (int i = 0; i < rowSize; i++) {
+            Row row = excelSheet.getRow(i);
+            if (i < data.size()) {
+                Cell cell = row.createCell(columnIndex);
+                writeCellData(data, i, cell);
+            }
+        }
+        write();
+    }
+
+    private void write() {
         try {
             fis.close();
             FileOutputStream outputStream = new FileOutputStream(excelFile);
@@ -197,6 +203,20 @@ public class ExcelIO {
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void writeCellData(ArrayList<Object> data, int i, Cell cell) {
+        if (data.get(i) instanceof Number) {
+            cell.setCellValue( ((Number) data.get(i)).doubleValue());
+        } else if (data.get(i) instanceof String) {
+            CellStyle style = workbook.createCellStyle();
+            Font font = workbook.createFont();
+            font.setBold(true);
+            style.setFont(font);
+            cell.setCellStyle(style);
+            cell.setCellValue((String) data.get(i));
+
         }
     }
 }
