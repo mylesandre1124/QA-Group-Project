@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5124b444-5ffe-4ff6-9052-a292f40da914" name="Default" comment="Fixed bug with missing data in excel file. Imported to make last test pass">
+    <list default="true" id="5124b444-5ffe-4ff6-9052-a292f40da914" name="Default" comment="Fixed contributions bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/GradesDatabase-goldenversion.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/DB/GradesDatabase-goldenversion.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExcelIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExcelIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradeExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradeExporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradesDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradesDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/GradesDBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GradesDBTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/QA Group Project/ExcelIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QA Group Project/ExcelIO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/QA Group Project/GradeExporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QA Group Project/GradeExporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/QA Group Project/GradesDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QA Group Project/GradesDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/QA Group Project/GradesDBTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/QA Group Project/GradesDBTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/GradesDBTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="104" column="38" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="38" />
+            <state relative-caret-position="350">
+              <caret line="117" column="7" selection-start-line="117" selection-start-column="7" selection-end-line="117" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -199,7 +198,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556891837026" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556893659901" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -336,7 +335,7 @@
       <workItem from="1555184443491" duration="41000" />
       <workItem from="1555339482296" duration="509000" />
       <workItem from="1555540044714" duration="3743000" />
-      <workItem from="1556889672667" duration="1206000" />
+      <workItem from="1556889672667" duration="1575000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed bug with missing data in excel file. Imported to make last test pass">
       <created>1555543047391</created>
@@ -345,13 +344,17 @@
       <option name="project" value="LOCAL" />
       <updated>1555543047391</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed contributions bug">
+      <created>1556891860980</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1556891860980</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GradesDBTest - 2019.05.03 at 09h 04m 16s.xml">
-      <configuration name="GradesDBTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="GradesDBTest - 2019.05.03 at 09h 04m 57s.xml">
       <configuration name="GradesDBTest" configurationId="JUnit" />
     </history-entry>
@@ -379,9 +382,12 @@
     <history-entry file="GradesDBTest - 2019.05.03 at 09h 51m 38s.xml">
       <configuration name="GradesDBTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="GradesDBTest - 2019.05.03 at 09h 57m 20s.xml">
+      <configuration name="GradesDBTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5472000" />
+    <option name="totallyTimeSpent" value="5841000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -425,7 +431,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed bug with missing data in excel file. Imported to make last test pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with missing data in excel file. Imported to make last test pass" />
+    <MESSAGE value="Fixed contributions bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed contributions bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -546,8 +553,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/GradesDBTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="104" column="38" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="38" />
+        <state relative-caret-position="350">
+          <caret line="117" column="7" selection-start-line="117" selection-start-column="7" selection-end-line="117" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
